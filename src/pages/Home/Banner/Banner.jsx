@@ -27,7 +27,7 @@ const Banner = () => {
         <SwiperSlide className="">
           <div className="relative">
             <img src={banner1} alt="banner" className="" />
-            <div className="absolute bottom-1/2 w-full  left-0 text-white">
+            <div className="absolute bottom-1/2 w-full  left-0 text-white ">
               <div>
                 <h1 className="font-extrabold text-5xl mb-5">
                   Exploring the world
