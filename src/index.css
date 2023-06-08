@@ -16,3 +16,15 @@
   background-color: #fbc102 !important;
   color: #ffffff !important;
 }
+.button {
+  color: #ffffff;
+  padding: 10px 20px;
+  background-color: #fbc102;
+  border-radius: 5px;
+}
+.button1 {
+  color: #ffffff;
+  padding: 10px 20px;
+  border: 2px solid #fbc102;
+  border-radius: 5px;
+}
