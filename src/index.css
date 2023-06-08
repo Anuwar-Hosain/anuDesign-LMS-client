@@ -12,3 +12,7 @@
 .secondary-color {
   color: #253c56;
 }
+.hover:hover {
+  background-color: #fbc102 !important;
+  color: #ffffff !important;
+}

@@ -4,17 +4,25 @@ const Navbar = () => {
   const navOptions = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link className="hover" to="/">
+          Home
+        </Link>
       </li>
       <li>
-        <Link to="/">Instructors</Link>
+        <Link className="hover" to="/">
+          Instructors
+        </Link>
       </li>
       <li>
-        <Link to="/">Classes</Link>
+        <Link className="hover" to="/">
+          Classes
+        </Link>
       </li>
       {/* ToDO: user login thakle dashboard show korbe */}
       <li>
-        <Link to="/">Dashboard</Link>
+        <Link className="hover" to="/">
+          Dashboard
+        </Link>
       </li>
       {/* ToDO: user login thakle profile deshate hobe */}
       <li>
@@ -28,13 +36,15 @@ const Navbar = () => {
       </li>
       {/* ToDO: user login na thakle login dekhate hobe */}
       <li>
-        <Link to="/">Login</Link>
+        <Link className="hover" to="/login">
+          Login
+        </Link>
       </li>
     </>
   );
   return (
     <>
-      <section className="">
+      <section className="bg-[#253c56]">
         <div className="flex justify-between items-center size text-white">
           <div className="navbar-start ">
             <div className="dropdown">
@@ -66,7 +76,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{navOptions}</ul>
+            <ul className="menu menu-horizontal px-1 ">{navOptions}</ul>
           </div>
         </div>
       </section>
