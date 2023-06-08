@@ -16,6 +16,7 @@ const Navbar = () => {
       <li>
         <Link to="/">Dashboard</Link>
       </li>
+      {/* ToDO: user login thakle profile deshate hobe */}
       <li>
         <Link to="/">
           <img
@@ -25,6 +26,7 @@ const Navbar = () => {
           />
         </Link>
       </li>
+      {/* ToDO: user login na thakle login dekhate hobe */}
       <li>
         <Link to="/">Login</Link>
       </li>
