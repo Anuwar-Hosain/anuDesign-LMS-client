@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.size {
+  width: 85vw;
+  margin: 0 auto;
+}
