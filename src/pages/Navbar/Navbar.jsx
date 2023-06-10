@@ -9,12 +9,12 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="hover" to="/">
+        <Link className="hover" to="/instructors">
           Instructors
         </Link>
       </li>
       <li>
-        <Link className="hover" to="/">
+        <Link className="hover" to="/classes">
           Classes
         </Link>
       </li>

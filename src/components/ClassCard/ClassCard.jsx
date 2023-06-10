@@ -7,7 +7,7 @@ const ClassCard = ({ item }) => {
   return (
     <div className="card bg-base-100 shadow-xl border boarder">
       <figure>
-        <img src={img_url} alt="Shoes" className="h-80 object-contain" />
+        <img src={img_url} alt="Shoes" className="h-80" />
       </figure>
       <div className=" p-4">
         <div className="flex justify-between">

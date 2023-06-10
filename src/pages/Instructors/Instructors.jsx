@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import InstructorCard from "../../../components/InstructorCard/InstructorCard";
+import InstructorCard from "../../components/InstructorCard/InstructorCard";
 
-const PopularInstructor = () => {
+const Instructors = () => {
   const [instructors, setInstructors] = useState();
   useEffect(() => {
     fetch("http://localhost:5000/instructors")
@@ -13,7 +13,7 @@ const PopularInstructor = () => {
   return (
     <section className="size">
       <div className="my-14">
-        <h1 className="text-5xl font-extrabold">Our Popular Instructor</h1>
+        <h1 className="text-5xl font-extrabold text-center">Our Instructor:</h1>
         <div className="mt-14 grid grid-cols-3 gap-2">
           {instructors?.map((instructor) => (
             <InstructorCard
@@ -27,4 +27,4 @@ const PopularInstructor = () => {
   );
 };
 
-export default PopularInstructor;
+export default Instructors;
