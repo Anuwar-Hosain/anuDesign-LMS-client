@@ -86,7 +86,7 @@ const Login = () => {
         <p className="text-center">
           <small>
             New Here?
-            <Link className="btn-link" to="/signup">
+            <Link className="btn-link" to="/sign-up">
               Create an account
             </Link>
           </small>
