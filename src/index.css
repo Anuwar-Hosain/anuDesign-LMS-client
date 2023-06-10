@@ -28,3 +28,6 @@
   border: 2px solid #fbc102;
   border-radius: 5px;
 }
+.ul > li {
+  margin-bottom: 10px;
+}
