@@ -3,7 +3,6 @@ import { FaClock, FaRegChartBar, FaRegStar } from "react-icons/fa";
 
 const ClassCard = ({ item }) => {
   const { img_url, price, reviews, stage, time, title, class_name } = item;
-  console.log(item);
   return (
     <div className="card bg-base-100 shadow-xl border boarder">
       <figure>

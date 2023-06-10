@@ -1,6 +1,5 @@
 const InstructorCard = ({ instructor }) => {
   const { img_url, name, email } = instructor;
-  console.log(instructor);
   return (
     <div className="card  bg-base-100 shadow-xl">
       <figure>
