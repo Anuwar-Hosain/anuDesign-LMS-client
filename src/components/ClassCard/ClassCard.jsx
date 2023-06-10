@@ -36,7 +36,7 @@ const ClassCard = ({ item }) => {
     if (user && user.email) {
       const selectedClasses = {
         classItemId: _id,
-        name,
+        title,
         img_url,
         price,
         email: user.email,
@@ -63,7 +63,7 @@ const ClassCard = ({ item }) => {
         });
     } else {
       Swal.fire({
-        title: "Please login to order the food",
+        title: "Please login",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",

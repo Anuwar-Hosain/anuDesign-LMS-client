@@ -21,7 +21,7 @@ const DashBoard = () => {
         <ul className="menu p-4 w-80 ul text-white">
           {/* Sidebar content here */}
           <li>
-            <NavLink to="/selected-classes">
+            <NavLink to="/dashboard/selected-classes">
               {" "}
               <FaShoppingCart></FaShoppingCart>My Selected Classes
             </NavLink>
