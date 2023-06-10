@@ -28,7 +28,6 @@ const Navbar = () => {
           Classes
         </Link>
       </li>
-      {/* ToDO: user login thakle dashboard show korbe */}
       {user && (
         <li>
           <Link className="hover" to="/">
