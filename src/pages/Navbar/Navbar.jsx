@@ -1,6 +1,16 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navOptions = (
     <>
       <li>
@@ -19,26 +29,40 @@ const Navbar = () => {
         </Link>
       </li>
       {/* ToDO: user login thakle dashboard show korbe */}
+      {user && (
+        <li>
+          <Link className="hover" to="/">
+            Dashboard
+          </Link>
+        </li>
+      )}
+
+      {user && (
+        <li>
+          <Link to="/">
+            <img
+              src={user?.photoURL}
+              alt="profile"
+              className="w-8 h-8 rounded-full"
+            />
+          </Link>
+        </li>
+      )}
+
       <li>
-        <Link className="hover" to="/">
-          Dashboard
-        </Link>
-      </li>
-      {/* ToDO: user login thakle profile deshate hobe */}
-      <li>
-        <Link to="/">
-          <img
-            src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            alt="profile"
-            className="w-8 h-8 rounded-full"
-          />
-        </Link>
-      </li>
-      {/* ToDO: user login na thakle login dekhate hobe */}
-      <li>
-        <Link className="hover" to="/login">
-          Login
-        </Link>
+        {user ? (
+          <>
+            <button onClick={handleLogOut} className="hover">
+              LogOut
+            </button>
+          </>
+        ) : (
+          <>
+            <Link className="hover" to="/login">
+              Login
+            </Link>
+          </>
+        )}
       </li>
     </>
   );
