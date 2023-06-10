@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
+import useSelectClasses from "../../hooks/useSelectClasses";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+  const [selectedClass] = useSelectClasses();
+  console.log(selectedClass);
 
   const handleLogOut = () => {
     logOut()
@@ -34,7 +36,7 @@ const Navbar = () => {
           <Link className="hover" to="/">
             <div className="indicator">
               <span className="indicator-item badge bg-[#fbc102] outline-none border-none text-white">
-                99+
+                {selectedClass?.length || 0}+
               </span>
               <FaShoppingCart className="text-2xl"></FaShoppingCart>
             </div>

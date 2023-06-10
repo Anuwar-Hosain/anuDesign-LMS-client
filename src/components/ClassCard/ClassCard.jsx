@@ -1,11 +1,28 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaClock, FaRegChartBar, FaRegStar } from "react-icons/fa";
+import { AuthContext } from "../../providers/AuthProvider";
+import useSelectClasses from "../../hooks/useSelectClasses";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ClassCard = ({ item }) => {
   const [value, setValue] = useState(false);
-  const { img_url, price, reviews, stage, time, title, class_name, seats } =
-    item;
+  const {
+    img_url,
+    price,
+    reviews,
+    stage,
+    time,
+    title,
+    class_name,
+    seats,
+    _id,
+  } = item;
+  const { user } = useContext(AuthContext);
+  const [, refetch] = useSelectClasses();
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     if (seats == 0) {
       setValue(true);
@@ -13,6 +30,52 @@ const ClassCard = ({ item }) => {
       setValue(false);
     }
   }, []);
+
+  const handleAddToCart = (item) => {
+    console.log(item);
+    if (user && user.email) {
+      const selectedClasses = {
+        classItemId: _id,
+        name,
+        img_url,
+        price,
+        email: user.email,
+      };
+      fetch("http://localhost:5000/selectedClasses", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(selectedClasses),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            refetch(); // refetch cart to update the number of items in the cart
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Class Selected",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Please login to order the food",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login now!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
   return (
     <div className="card bg-base-100 shadow-xl border boarder">
       <figure>
@@ -48,8 +111,9 @@ const ClassCard = ({ item }) => {
           <button
             disabled={value}
             className="btn bg-[#fbc102] hover:bg-[#fdd349]"
+            onClick={() => handleAddToCart(item)}
           >
-            Buy Now
+            Select Class
           </button>
         </div>
       </div>
