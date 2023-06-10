@@ -1,8 +1,18 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { FaClock, FaRegChartBar, FaRegStar } from "react-icons/fa";
 
 const ClassCard = ({ item }) => {
-  const { img_url, price, reviews, stage, time, title, class_name } = item;
+  const [value, setValue] = useState(false);
+  const { img_url, price, reviews, stage, time, title, class_name, seats } =
+    item;
+  useEffect(() => {
+    if (seats == 0) {
+      setValue(true);
+    } else {
+      setValue(false);
+    }
+  }, []);
   return (
     <div className="card bg-base-100 shadow-xl border boarder">
       <figure>
@@ -28,10 +38,17 @@ const ClassCard = ({ item }) => {
             <FaRegStar className="text-[#fbc102]"></FaRegStar>
             <samp>{reviews} reviews</samp>
           </div>
+          <div className="flex items-center gap-2">
+            <FaRegStar className="text-[#fbc102]"></FaRegStar>
+            <samp>{seats} seats</samp>
+          </div>
         </div>
         <h2 className="font-bold text-xl my-2">{title}</h2>
         <div className="card-actions justify-end">
-          <button className="btn bg-[#fbc102] hover:bg-[#fdd349]">
+          <button
+            disabled={value}
+            className="btn bg-[#fbc102] hover:bg-[#fdd349]"
+          >
             Buy Now
           </button>
         </div>
