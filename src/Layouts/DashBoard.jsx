@@ -29,8 +29,13 @@ const DashBoard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/dashboard/selected-classes">
+                <NavLink to="/dashboard/manage-classes">
                   <FaShoppingCart></FaShoppingCart> Manage class
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-users">
+                  <FaShoppingCart></FaShoppingCart> Manage Users
                 </NavLink>
               </li>
             </>
