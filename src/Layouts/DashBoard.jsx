@@ -6,9 +6,13 @@ import {
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
+import useUser from "../hooks/useUser";
 
 const DashBoard = () => {
   const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+  const [isUser] = useUser();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -26,7 +30,7 @@ const DashBoard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 ul text-white">
           {/* Sidebar content here */}
-          {isAdmin ? (
+          {isAdmin && (
             <>
               <li>
                 <NavLink to="/dashboard/manage-classes">
@@ -39,7 +43,22 @@ const DashBoard = () => {
                 </NavLink>
               </li>
             </>
-          ) : (
+          )}
+          {isInstructor && (
+            <>
+              <li>
+                <NavLink to="/dashboard/manage-classes">
+                  <FaShoppingCart></FaShoppingCart> Add class
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-users">
+                  <FaShoppingCart></FaShoppingCart> My Users
+                </NavLink>
+              </li>
+            </>
+          )}
+          {isUser && (
             <>
               <li>
                 <NavLink to="/dashboard/selected-classes">
@@ -58,6 +77,7 @@ const DashBoard = () => {
               </li>
             </>
           )}
+
           <div className="divider bg-white"></div>
           <li>
             <NavLink to="/">
@@ -71,3 +91,23 @@ const DashBoard = () => {
 };
 
 export default DashBoard;
+
+{
+  /* <>
+<li>
+  <NavLink to="/dashboard/selected-classes">
+    <FaShoppingCart></FaShoppingCart> My Selected Classes
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/enrolled-class">
+    <FaCheckCircle></FaCheckCircle> My Enrolled Class
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/payments-history">
+    <FaHistory></FaHistory> My Payment History
+  </NavLink>
+</li>
+</> */
+}
