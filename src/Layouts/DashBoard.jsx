@@ -27,7 +27,7 @@ const DashBoard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/enrolled-class">
+            <NavLink to="/dashboard/enrolled-class">
               <FaCheckCircle></FaCheckCircle>My Enrolled Class
             </NavLink>
           </li>

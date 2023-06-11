@@ -8,6 +8,7 @@ import SignUp from "../pages/SignUp/signUp";
 import PrivateRoute from "./PrivateRoute";
 import DashBoard from "../Layouts/DashBoard";
 import SelectedClass from "../pages/DashBoard/SelectedClass/SelectedClass";
+import EnrolledClass from "../pages/DashBoard/EnrolledClass/EnrolledClass";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <SelectedClass></SelectedClass>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/enrolled-class",
+        element: (
+          <PrivateRoute>
+            <EnrolledClass></EnrolledClass>
           </PrivateRoute>
         ),
       },
