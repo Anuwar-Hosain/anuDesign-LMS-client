@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useSelectClasses from "../../../hooks/useSelectClasses";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CheckoutForm = ({ item }) => {
   const { price } = item;
+  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const [, refetch] = useSelectClasses();
@@ -90,9 +93,17 @@ const CheckoutForm = ({ item }) => {
         console.log(res.data);
         if (res.data.insertResult.insertedId) {
           // display confirm
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Class Enrolled has been Success",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
         if (res.data.deleteResult.deletedCount > 0) {
           // display confirm
+          navigate("/dashboard/enrolled-class");
           refetch();
         }
       });

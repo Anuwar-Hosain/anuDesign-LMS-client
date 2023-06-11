@@ -1,4 +1,9 @@
-import { FaHome, FaShoppingCart, FaCheckCircle } from "react-icons/fa";
+import {
+  FaHome,
+  FaShoppingCart,
+  FaCheckCircle,
+  FaHistory,
+} from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 
 const DashBoard = () => {
@@ -22,13 +27,17 @@ const DashBoard = () => {
           {/* Sidebar content here */}
           <li>
             <NavLink to="/dashboard/selected-classes">
-              {" "}
-              <FaShoppingCart></FaShoppingCart>My Selected Classes
+              <FaShoppingCart></FaShoppingCart> My Selected Classes
             </NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/enrolled-class">
-              <FaCheckCircle></FaCheckCircle>My Enrolled Class
+              <FaCheckCircle></FaCheckCircle> My Enrolled Class
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/payments-history">
+              <FaHistory></FaHistory> My Payment History
             </NavLink>
           </li>
           <div className="divider bg-white"></div>

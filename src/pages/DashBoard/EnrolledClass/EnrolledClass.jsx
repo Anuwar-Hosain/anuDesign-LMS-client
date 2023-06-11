@@ -1,4 +1,3 @@
-import { FaTrashAlt } from "react-icons/fa";
 import useEnrolledClasses from "../../../hooks/useEnrolledClasses";
 const EnrolledClass = () => {
   const [enrolledClasses] = useEnrolledClasses();
@@ -11,8 +10,6 @@ const EnrolledClass = () => {
           <thead className="bg-[#253c56] text-white text-[18px]">
             <tr>
               <th>#</th>
-              <th>Class Image</th>
-              <th>Instructor Name</th>
               <th>Class Title</th>
               <th className="text-end">Price</th>
               <th className="text-end">Action</th>
@@ -22,22 +19,11 @@ const EnrolledClass = () => {
             {enrolledClasses?.map((item, index) => (
               <tr className="cursor-pointer" key={item._id}>
                 <td>{index + 1}</td>
-                <td>
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        // src={item.img_url}
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                </td>
-                <td className="font-semibold"></td>
                 <td className="font-semibold">{item.title}</td>
-                <td className="text-end font-semibold"></td>
+                <td className="text-end font-semibold">${item?.price}</td>
                 <td className="text-end">
                   <button className="btn btn-ghost bg-[#fbc102]  text-white">
-                    <FaTrashAlt></FaTrashAlt>
+                    See More
                   </button>
                 </td>
               </tr>
