@@ -69,11 +69,10 @@ const SelectedClass = () => {
                   </td>
                   <td className="font-semibold">{item.teacher}</td>
                   <td className="font-semibold">{item.title}</td>
-                  <td className="text-end">${item.price}</td>
+                  <td className="text-end font-semibold">${item.price}</td>
                   <td className="text-end">
                     {/* modal */}
                     <label
-                      // onClick={() => updateHandle(toy)}
                       htmlFor={`my-modal-${item._id}`}
                       className="btn btn-ghost bg-[#fbc102] mr-5  text-white"
                     >
@@ -103,7 +102,7 @@ const SelectedClass = () => {
                               Price: ${item.price}
                             </p>
                             <Elements stripe={stripePromise}>
-                              <CheckoutForm></CheckoutForm>
+                              <CheckoutForm item={item}></CheckoutForm>
                             </Elements>
                           </div>
                         </div>
