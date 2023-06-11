@@ -1,15 +1,17 @@
 import useEnrolledClasses from "../../../hooks/useEnrolledClasses";
-const EnrolledClass = () => {
+
+const PaymentHistory = () => {
   const [enrolledClasses] = useEnrolledClasses();
   return (
     <div className="w-11/12 h-[85vh]">
-      <h1 className="text-center mb-10 text-2xl">Enrolled Classes</h1>
+      <h1 className="text-center mb-10 text-2xl">Payment Histories</h1>
       <div className="overflow-x-auto w-full h-[90%]">
         <table className="table table-zebra w-full">
           {/* head */}
           <thead className="bg-[#253c56] text-white text-[18px]">
             <tr>
               <th>#</th>
+              <th>Transaction Id</th>
               <th>Class Title</th>
               <th className="text-end">Price</th>
               <th className="text-end">Action</th>
@@ -19,6 +21,7 @@ const EnrolledClass = () => {
             {enrolledClasses?.map((item, index) => (
               <tr className="cursor-pointer" key={item._id}>
                 <td>{index + 1}</td>
+                <td className="font-semibold">{item.transactionId}</td>
                 <td className="font-semibold">{item.title}</td>
                 <td className="text-end font-semibold">${item?.price}</td>
                 <td className="text-end">
@@ -35,4 +38,4 @@ const EnrolledClass = () => {
   );
 };
 
-export default EnrolledClass;
+export default PaymentHistory;

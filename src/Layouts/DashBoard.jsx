@@ -5,9 +5,10 @@ import {
   FaHistory,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const DashBoard = () => {
-  //   const isAdmin = false;
+  const [isAdmin] = useAdmin();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -25,21 +26,33 @@ const DashBoard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 ul text-white">
           {/* Sidebar content here */}
-          <li>
-            <NavLink to="/dashboard/selected-classes">
-              <FaShoppingCart></FaShoppingCart> My Selected Classes
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/enrolled-class">
-              <FaCheckCircle></FaCheckCircle> My Enrolled Class
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/payments-history">
-              <FaHistory></FaHistory> My Payment History
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/selected-classes">
+                  <FaShoppingCart></FaShoppingCart> Manage class
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/dashboard/selected-classes">
+                  <FaShoppingCart></FaShoppingCart> My Selected Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/enrolled-class">
+                  <FaCheckCircle></FaCheckCircle> My Enrolled Class
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/payments-history">
+                  <FaHistory></FaHistory> My Payment History
+                </NavLink>
+              </li>
+            </>
+          )}
           <div className="divider bg-white"></div>
           <li>
             <NavLink to="/">
