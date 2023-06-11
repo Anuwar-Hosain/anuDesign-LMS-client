@@ -1,6 +1,10 @@
 import { FaTrashAlt, FaPaypal } from "react-icons/fa";
 import useSelectClasses from "../../../hooks/useSelectClasses";
 import Swal from "sweetalert2";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "../Payment/CheckoutForm";
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const SelectedClass = () => {
   const [selectedClass, refetch] = useSelectClasses();
@@ -67,13 +71,45 @@ const SelectedClass = () => {
                   <td className="font-semibold">{item.title}</td>
                   <td className="text-end">${item.price}</td>
                   <td className="text-end">
-                    <button
-                      // onClick={() => handleDelete(item)}
-                      className="btn btn-ghost bg-[#fbc102] mr-8 text-white"
+                    {/* modal */}
+                    <label
+                      // onClick={() => updateHandle(toy)}
+                      htmlFor={`my-modal-${item._id}`}
+                      className="btn btn-ghost bg-[#fbc102] mr-5  text-white"
                     >
-                      Payment
-                      <FaPaypal></FaPaypal>
-                    </button>
+                      <FaPaypal></FaPaypal> PAYMENT
+                    </label>
+
+                    {/* Put this part before </body> tag */}
+                    <input
+                      type="checkbox"
+                      id={`my-modal-${item._id}`}
+                      className="modal-toggle"
+                    />
+                    <div className="modal">
+                      <div className="modal-box relative">
+                        <label
+                          htmlFor={`my-modal-${item._id}`}
+                          className="btn btn-sm btn-circle absolute right-2 top-2"
+                        >
+                          ✕
+                        </label>
+                        <div>
+                          <div className="text-center">
+                            <h1 className="font-semibold text-xl">
+                              {item.title}
+                            </h1>
+                            <p className="text-[18px] font-bold my-10">
+                              Price: ${item.price}
+                            </p>
+                            <Elements stripe={stripePromise}>
+                              <CheckoutForm></CheckoutForm>
+                            </Elements>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* modal */}
                     <button
                       onClick={() => handleDelete(item)}
                       className="btn btn-ghost bg-[#fbc102]  text-white"
