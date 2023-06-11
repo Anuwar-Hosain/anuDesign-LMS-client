@@ -16,6 +16,7 @@ const ClassCard = ({ item }) => {
     time,
     title,
     class_name,
+    teacher,
     seats,
     _id,
   } = item;
@@ -37,6 +38,7 @@ const ClassCard = ({ item }) => {
       const selectedClasses = {
         classItemId: _id,
         title,
+        teacher,
         img_url,
         price,
         email: user.email,
