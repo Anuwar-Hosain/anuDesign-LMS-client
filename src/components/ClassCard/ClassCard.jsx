@@ -82,7 +82,11 @@ const ClassCard = ({ item }) => {
     }
   };
   return (
-    <div className="card bg-base-100 shadow-xl border boarder">
+    <div
+      className={`card ${
+        value === true ? "bg-red-500" : "bg-base-100"
+      } shadow-xl border boarder`}
+    >
       <figure>
         <img src={img_url} alt="Shoes" className="h-80" />
       </figure>
