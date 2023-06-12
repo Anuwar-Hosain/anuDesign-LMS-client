@@ -41,11 +41,11 @@ const router = createBrowserRouter([
         path: "classes",
         element: <Classes></Classes>,
       },
-      {
-        path: "*",
-        element: <NotFound></NotFound>,
-      },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
   {
     path: "dashboard",

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <section className="size">
-      <h1>NotFound</h1>
       <div className="flex justify-center h-[80vh] items-center">
         <div className="card card-compact w-96 bg-base-100 shadow-xl">
           <figure>
