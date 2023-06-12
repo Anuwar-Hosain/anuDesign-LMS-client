@@ -33,7 +33,7 @@ const ClassCard = ({ item }) => {
     } else {
       setValue(false);
     }
-  }, []);
+  }, [seats]);
 
   const handleAddToCart = (item) => {
     console.log(item);

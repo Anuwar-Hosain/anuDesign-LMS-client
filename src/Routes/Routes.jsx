@@ -14,6 +14,7 @@ import ManageClasses from "../pages/DashBoard/ManageClasses/ManageClasses";
 import ManageUsers from "../pages/DashBoard/ManageUsers/ManageUsers";
 import AddClass from "../pages/DashBoard/AddClass/AddClass";
 import MyClass from "../pages/DashBoard/MyClass/MyClass";
+import NotFound from "../NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "classes",
         element: <Classes></Classes>,
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       },
     ],
   },

@@ -2,6 +2,10 @@ import {
   FaHome,
   FaShoppingCart,
   FaCheckCircle,
+  FaEdit,
+  FaUserEdit,
+  FaBorderAll,
+  FaCloudUploadAlt,
   FaHistory,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
@@ -9,11 +13,13 @@ import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import useUser from "../hooks/useUser";
 import Navbar from "../pages/Navbar/Navbar";
+import useSelectClasses from "../hooks/useSelectClasses";
 
 const DashBoard = () => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   const [isUser] = useUser();
+  const [selectedClass] = useSelectClasses();
   return (
     <section className="max-h-[100vh]">
       <Navbar></Navbar>
@@ -37,12 +43,12 @@ const DashBoard = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/manage-classes">
-                    <FaShoppingCart></FaShoppingCart> Manage class
+                    <FaEdit></FaEdit> Manage class
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/manage-users">
-                    <FaShoppingCart></FaShoppingCart> Manage Users
+                    <FaUserEdit></FaUserEdit> Manage Users
                   </NavLink>
                 </li>
               </>
@@ -51,12 +57,12 @@ const DashBoard = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/add-class">
-                    <FaShoppingCart></FaShoppingCart> Add class
+                    <FaCloudUploadAlt></FaCloudUploadAlt> Add class
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/my-class">
-                    <FaShoppingCart></FaShoppingCart> My Class
+                    <FaBorderAll></FaBorderAll> My Class
                   </NavLink>
                 </li>
               </>
@@ -65,7 +71,13 @@ const DashBoard = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/selected-classes">
-                    <FaShoppingCart></FaShoppingCart> My Selected Classes
+                    <div className="indicator">
+                      <span className="indicator-item badge bg-[#fbc102] outline-none border-none text-white">
+                        {selectedClass?.length || 0}+
+                      </span>
+                      <FaShoppingCart className="text-2xl"></FaShoppingCart>
+                    </div>{" "}
+                    My Selected Classes
                   </NavLink>
                 </li>
                 <li>

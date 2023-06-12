@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 import useSelectClasses from "../../hooks/useSelectClasses";
+import useUser from "../../hooks/useUser";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isUser] = useUser();
   const [selectedClass] = useSelectClasses();
   const navigate = useNavigate();
   console.log(user?.photoURL);
@@ -34,7 +36,7 @@ const Navbar = () => {
           Classes
         </Link>
       </li>
-      {user && (
+      {isUser && (
         <li>
           <Link className="hover" to="/">
             <div className="indicator">
