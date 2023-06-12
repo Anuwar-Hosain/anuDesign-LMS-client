@@ -16,7 +16,7 @@ const MyClass = () => {
   );
   return (
     <div className="w-11/12 h-[85vh] ">
-      <h1 className="text-center mb-10 text-2xl">All Users</h1>
+      <h1 className="text-center mb-10 text-2xl">My All Class</h1>
       <div className="overflow-x-auto w-full h-[90%]">
         <table className="table table-zebra w-full">
           {/* head */}
@@ -34,7 +34,7 @@ const MyClass = () => {
             {addClasses.map((classes, index) => (
               <tr key={classes._id}>
                 <th>{index + 1}</th>
-                <td>{classes?.className}</td>
+                <td>{classes?.class_name}</td>
                 <td>
                   <samp className="bg-[#253c56] text-white p-2 rounded">
                     {classes?.status}

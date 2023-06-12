@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 const CheckoutForm = ({ item }) => {
   const { price } = item;
+  console.log(item.classItemId);
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
@@ -79,6 +80,20 @@ const CheckoutForm = ({ item }) => {
     if (paymentIntent.status === "succeeded") {
       // setTransactionId(paymentIntent.id);
       // save payment information to the server
+
+      // seats start
+      fetch(`http://localhost:5000/classes/seats/${item.classItemId}`, {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.modifiedCount) {
+            refetch();
+          }
+        });
+      // seats end
+
       const payment = {
         email: user?.email,
         name: user?.displayName,
@@ -86,9 +101,10 @@ const CheckoutForm = ({ item }) => {
         selectedId: item?._id,
         price,
         date: new Date(),
-        title: item?.title,
+        title: item?.class_name,
         classItemId: item?.classItemId,
       };
+
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
         if (res.data.insertResult.insertedId) {

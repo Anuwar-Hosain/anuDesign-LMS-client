@@ -5,16 +5,19 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useSelectClasses from "../../hooks/useSelectClasses";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useInstructor from "../../hooks/useInstructor";
+import useAdmin from "../../hooks/useAdmin";
 
 const ClassCard = ({ item }) => {
   const [value, setValue] = useState(false);
+  const [isInstructor] = useInstructor();
+  const [isAdmin] = useAdmin();
   const {
     img_url,
     price,
     reviews,
     stage,
     time,
-    title,
     class_name,
     teacher,
     seats,
@@ -37,7 +40,7 @@ const ClassCard = ({ item }) => {
     if (user && user.email) {
       const selectedClasses = {
         classItemId: _id,
-        title,
+        class_name,
         teacher,
         img_url,
         price,
@@ -108,10 +111,10 @@ const ClassCard = ({ item }) => {
             <samp>{seats} seats</samp>
           </div>
         </div>
-        <h2 className="font-bold text-xl my-2">{title}</h2>
+        <h2 className="font-bold text-xl my-2">{class_name}</h2>
         <div className="card-actions justify-end">
           <button
-            disabled={value}
+            disabled={value || isInstructor || isAdmin}
             className="btn bg-[#fbc102] hover:bg-[#fdd349]"
             onClick={() => handleAddToCart(item)}
           >

@@ -68,7 +68,7 @@ const SelectedClass = () => {
                     </div>
                   </td>
                   <td className="font-semibold">{item.teacher}</td>
-                  <td className="font-semibold">{item.title}</td>
+                  <td className="font-semibold">{item.class_name}</td>
                   <td className="text-end font-semibold">${item.price}</td>
                   <td className="text-end">
                     {/* modal */}
