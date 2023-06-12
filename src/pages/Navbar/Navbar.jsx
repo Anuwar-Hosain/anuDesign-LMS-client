@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 import useSelectClasses from "../../hooks/useSelectClasses";
@@ -7,11 +7,13 @@ import useSelectClasses from "../../hooks/useSelectClasses";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [selectedClass] = useSelectClasses();
-  console.log(selectedClass);
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        navigate("/");
+      })
       .catch((error) => console.log(error));
   };
   const navOptions = (
