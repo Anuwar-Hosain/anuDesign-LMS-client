@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import SocialLogin from "../../shared/SocialLogin/SocialLogin";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,22 +18,25 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     const email = data.email;
     const password = data.password;
-    console.log(email, password);
-    signIn(email, password).then((result) => {
-      const user = result.user;
-      console.log(user);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Login success",
-        showConfirmButton: false,
-        timer: 1500,
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setError(error.message);
       });
-      navigate(from, { replace: true });
-    });
   };
   return (
     <>
@@ -72,6 +76,7 @@ const Login = () => {
                 Forgot password?
               </a>
             </label>
+            <p className="text-red-600">{error}</p>
           </div>
 
           <div className="form-control mt-6">
@@ -82,6 +87,7 @@ const Login = () => {
             />
           </div>
         </form>
+
         <p className="text-center">
           <small>
             New Here?
