@@ -28,6 +28,7 @@ const AddClass = () => {
             class_name,
             price: parseFloat(price),
             teacher,
+            feedback: "No",
             email,
             stage,
             time: 120,

@@ -34,14 +34,45 @@ const MyClass = () => {
             {addClasses.map((classes, index) => (
               <tr key={classes._id}>
                 <th>{index + 1}</th>
-                <td>{classes?.class_name}</td>
+                <td className="font-semibold">{classes?.class_name}</td>
                 <td>
                   <samp className="bg-[#253c56] text-white p-2 rounded">
                     {classes?.status}
                   </samp>
                 </td>
                 <td>{classes?.student}</td>
-                <td></td>
+                <td>
+                  {/* modal */}
+                  <label
+                    htmlFor={`my-modal-${classes._id}`}
+                    className="btn btn-ghost bg-[#fbc102] mr-5  text-white"
+                  >
+                    See Feedback
+                  </label>
+
+                  {/* Put this part before </body> tag */}
+                  <input
+                    type="checkbox"
+                    id={`my-modal-${classes._id}`}
+                    className="modal-toggle"
+                  />
+                  <div className="modal">
+                    <div className="modal-box relative">
+                      <label
+                        htmlFor={`my-modal-${classes._id}`}
+                        className="btn btn-sm btn-circle absolute right-2 top-2"
+                      >
+                        ✕
+                      </label>
+                      <div>
+                        <div className="">
+                          <p>{classes?.feedback}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* modal */}
+                </td>
                 <td className="text-end">
                   <button
                     // onClick={() => handleDelete(user)}

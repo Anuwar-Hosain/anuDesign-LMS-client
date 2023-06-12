@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
+  const { user } = useAuth();
+  console.log(user.photoURL);
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await axiosSecure.get("/users");
     return res.data;
@@ -31,23 +34,51 @@ const ManageUsers = () => {
       });
   };
 
-  const handleMakeInstructor = (user) => {
-    console.log(user);
-    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+  const handleMakeInstructor = (userAll) => {
+    console.log(userAll);
+    fetch(`http://localhost:5000/users/instructor/${userAll._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${user.name} is an Admin Now!`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          // instructor added start
+          const saveInstructor = {
+            name: userAll.name,
+            email: userAll.email,
+            img_url: user.photoURL,
+          };
+          fetch("http://localhost:5000/instructors", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveInstructor),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                console.log("55555555", data);
+                refetch();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: `${userAll.name} is an instructor Now!`,
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+            });
+          // instructor added end
+          // refetch();
+          // Swal.fire({
+          //   position: "top-end",
+          //   icon: "success",
+          //   title: `${user.name} is an instructor Now!`,
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          // });
         }
       });
   };

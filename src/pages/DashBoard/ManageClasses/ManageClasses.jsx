@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-
+import { useForm } from "react-hook-form";
 const ManageClasses = () => {
+  const { register, handleSubmit } = useForm();
+
   const [axiosSecure] = useAxiosSecure();
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await axiosSecure.get("/classes");
@@ -49,9 +51,35 @@ const ManageClasses = () => {
         }
       });
   };
+  const onSubmit = (data) => {
+    console.log(data);
+
+    // const form = event.target;
+    // const feedback = form.feedback.value;
+    // console.log(feedback);
+
+    // fetch(`http://localhost:5000/classes/update/${item._id}`, {
+    //   method: "PATCH",
+    //   body: JSON.stringify(feedback),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data.modifiedCount) {
+    //       refetch();
+    //       Swal.fire({
+    //         position: "top-end",
+    //         icon: "success",
+    //         title: `${item.teacher} Feedback send Now!`,
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
+    //     }
+    //   });
+  };
   return (
     <div className="w-11/12 h-[85vh] ">
-      <h1 className="text-center mb-10 text-2xl">All Users</h1>
+      <h1 className="text-center mb-10 text-2xl">All Classes</h1>
       <div className="overflow-x-auto w-full h-[90%]">
         <table className="table table-zebra w-full">
           {/* head */}
@@ -107,12 +135,53 @@ const ManageClasses = () => {
                   >
                     Deny
                   </button>
-                  <button
-                    // onClick={() => handleDelete(item)}
+                  {/* <button
+                    // onClick={() => handleFeedback(item)}
                     className="btn btn-ghost bg-[#fbc102]  text-white"
                   >
                     Feedback
-                  </button>
+                  </button> */}
+                  {/* modal */}
+                  <label
+                    htmlFor={`my-modal-${item._id}`}
+                    className="btn btn-ghost bg-[#fbc102] mr-5  text-white"
+                  >
+                    Feedback
+                  </label>
+
+                  {/* Put this part before </body> tag */}
+                  <input
+                    type="checkbox"
+                    id={`my-modal-${item._id}`}
+                    className="modal-toggle"
+                  />
+                  <div className="modal">
+                    <div className="modal-box relative">
+                      <label
+                        htmlFor={`my-modal-${item._id}`}
+                        className="btn btn-sm btn-circle absolute right-2 top-2"
+                      >
+                        ✕
+                      </label>
+                      <div>
+                        <form onSubmit={handleSubmit(onSubmit)} className="">
+                          <textarea
+                            {...register("feedback", { required: true })}
+                            className="textarea textarea-warning w-full"
+                            placeholder="FeedBack"
+                            name="feedback"
+                          ></textarea>
+                          <br />
+                          <input
+                            className="btn btn-ghost mt-4 w-full bg-[#fbc102] text-end  text-white"
+                            type="submit"
+                            value="Send"
+                          />
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  {/* modal */}
                 </td>
               </tr>
             ))}
