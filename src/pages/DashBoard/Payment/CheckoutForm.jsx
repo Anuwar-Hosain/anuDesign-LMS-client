@@ -87,7 +87,7 @@ const CheckoutForm = ({ item }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          console.log("uuuuuuuuuuuuuuuuuuuuuuuuuuu", data);
           if (data.modifiedCount) {
             refetch();
           }

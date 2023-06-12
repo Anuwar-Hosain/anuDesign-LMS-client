@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -7,6 +8,47 @@ const ManageClasses = () => {
     const res = await axiosSecure.get("/classes");
     return res.data;
   });
+
+  const handleApproved = (item) => {
+    console.log(item);
+    fetch(`http://localhost:5000/classes/admin/${item._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${item.teacher} status update Now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+  const handleDenied = (item) => {
+    console.log(item);
+    fetch(`http://localhost:5000/classes/deny/${item._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${item.teacher} status update Now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
   return (
     <div className="w-11/12 h-[85vh] ">
       <h1 className="text-center mb-10 text-2xl">All Users</h1>
@@ -52,14 +94,16 @@ const ManageClasses = () => {
                 </td>
                 <td>
                   <button
-                    // onClick={() => handleDelete(item)}
+                    onClick={() => handleApproved(item)}
                     className="btn btn-ghost bg-[#fbc102]  text-white mr-4"
+                    disabled={item?.status === "approved"}
                   >
                     Approve
                   </button>
                   <button
-                    // onClick={() => handleDelete(item)}
+                    onClick={() => handleDenied(item)}
                     className="btn btn-ghost bg-[#fbc102]  text-white mr-4"
+                    disabled={item?.status === "denied"}
                   >
                     Deny
                   </button>
