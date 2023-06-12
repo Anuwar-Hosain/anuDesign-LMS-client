@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
-const ManageClasses = () => {
-  const { register, handleSubmit } = useForm();
+import { useNavigate } from "react-router-dom";
 
+const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
+  const navigate = useNavigate();
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await axiosSecure.get("/classes");
     return res.data;
@@ -51,31 +51,34 @@ const ManageClasses = () => {
         }
       });
   };
-  const onSubmit = (data) => {
-    console.log(data);
+  const handleFeedback = (event, item) => {
+    event.preventDefault();
+    const form = event.target;
+    const feedback = form.feedback.value;
+    console.log(feedback);
 
-    // const form = event.target;
-    // const feedback = form.feedback.value;
-    // console.log(feedback);
-
-    // fetch(`http://localhost:5000/classes/update/${item._id}`, {
-    //   method: "PATCH",
-    //   body: JSON.stringify(feedback),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.modifiedCount) {
-    //       refetch();
-    //       Swal.fire({
-    //         position: "top-end",
-    //         icon: "success",
-    //         title: `${item.teacher} Feedback send Now!`,
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
-    //     }
-    //   });
+    fetch(`http://localhost:5000/classes/update/${item._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ feedback }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          navigate("/dashboard/manage-classes");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${item.teacher} Feedback send Now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div className="w-11/12 h-[85vh] ">
@@ -164,9 +167,11 @@ const ManageClasses = () => {
                         ✕
                       </label>
                       <div>
-                        <form onSubmit={handleSubmit(onSubmit)} className="">
+                        <form
+                          onSubmit={() => handleFeedback(event, item)}
+                          className=""
+                        >
                           <textarea
-                            {...register("feedback", { required: true })}
                             className="textarea textarea-warning w-full"
                             placeholder="FeedBack"
                             name="feedback"
