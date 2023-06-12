@@ -7,7 +7,7 @@ const PopularInstructor = () => {
     fetch("http://localhost:5000/instructors")
       .then((res) => res.json())
       .then((result) => {
-        setInstructors(result);
+        setInstructors(result.slice(0, 6));
       });
   }, []);
   return (

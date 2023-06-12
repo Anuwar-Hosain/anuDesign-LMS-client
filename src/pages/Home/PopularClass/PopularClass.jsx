@@ -6,7 +6,7 @@ const PopularClass = () => {
     fetch("http://localhost:5000/class")
       .then((res) => res.json())
       .then((result) => {
-        setClasses(result);
+        setClasses(result.slice(0, 6));
       });
   }, []);
   return (

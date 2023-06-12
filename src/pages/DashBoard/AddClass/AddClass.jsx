@@ -33,7 +33,7 @@ const AddClass = () => {
             stage,
             time: 120,
             reviews: 3.5,
-            seats,
+            seats: parseInt(seats),
             status: "pending",
             student: 0,
             img_url: imgURL,

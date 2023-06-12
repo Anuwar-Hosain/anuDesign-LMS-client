@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
-import { FaClock, FaRegChartBar, FaRegStar } from "react-icons/fa";
+import { FaClock, FaRegChartBar, FaRegStar, FaChair } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 import useSelectClasses from "../../hooks/useSelectClasses";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -107,7 +107,7 @@ const ClassCard = ({ item }) => {
             <samp>{reviews} reviews</samp>
           </div>
           <div className="flex items-center gap-2">
-            <FaRegStar className="text-[#fbc102]"></FaRegStar>
+            <FaChair className="text-[#fbc102]"></FaChair>
             <samp>{seats} seats</samp>
           </div>
         </div>
