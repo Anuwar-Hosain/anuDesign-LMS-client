@@ -15,7 +15,7 @@ const DashBoard = () => {
   const [isInstructor] = useInstructor();
   const [isUser] = useUser();
   return (
-    <>
+    <section className="max-h-[100vh]">
       <Navbar></Navbar>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -56,7 +56,7 @@ const DashBoard = () => {
                 </li>
                 <li>
                   <NavLink to="/dashboard/my-class">
-                    <FaShoppingCart></FaShoppingCart> My Users
+                    <FaShoppingCart></FaShoppingCart> My Class
                   </NavLink>
                 </li>
               </>
@@ -90,7 +90,7 @@ const DashBoard = () => {
           </ul>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

@@ -33,6 +33,7 @@ const AddClass = () => {
             stage,
             seats,
             status: "pending",
+            student: 0,
             image: imgURL,
           };
           console.log(newItem);
