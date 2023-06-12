@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 import useSelectClasses from "../../hooks/useSelectClasses";
 import useUser from "../../hooks/useUser";
+import img from "../../../public/logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -115,7 +116,7 @@ const Navbar = () => {
               </ul>
             </div>
             <Link to="/" className=" text-xl">
-              <img src="/public/logo.png" alt="logo" className="w-24" />
+              <img src={img} alt="logo" className="w-24" />
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
