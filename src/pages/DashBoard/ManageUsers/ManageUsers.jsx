@@ -15,7 +15,7 @@ const ManageUsers = () => {
 
   const handleMakeAdmin = (user) => {
     console.log(user);
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`https://anu-design-server.vercel.app/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -36,9 +36,12 @@ const ManageUsers = () => {
 
   const handleMakeInstructor = (userAll) => {
     console.log(userAll);
-    fetch(`http://localhost:5000/users/instructor/${userAll._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://anu-design-server.vercel.app/users/instructor/${userAll._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -49,7 +52,7 @@ const ManageUsers = () => {
             email: userAll.email,
             img_url: user.photoURL,
           };
-          fetch("http://localhost:5000/instructors", {
+          fetch("https://anu-design-server.vercel.app/instructors", {
             method: "POST",
             headers: {
               "content-type": "application/json",

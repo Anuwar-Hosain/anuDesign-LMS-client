@@ -82,9 +82,12 @@ const CheckoutForm = ({ item }) => {
       // save payment information to the server
 
       // seats start
-      fetch(`http://localhost:5000/classes/seats/${item.classItemId}`, {
-        method: "PATCH",
-      })
+      fetch(
+        `https://anu-design-server.vercel.app/classes/seats/${item.classItemId}`,
+        {
+          method: "PATCH",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log("uuuuuuuuuuuuuuuuuuuuuuuuuuu", data);

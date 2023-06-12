@@ -4,7 +4,7 @@ import InstructorCard from "../../../components/InstructorCard/InstructorCard";
 const PopularInstructor = () => {
   const [instructors, setInstructors] = useState();
   useEffect(() => {
-    fetch("http://localhost:5000/instructors")
+    fetch("https://anu-design-server.vercel.app/instructors")
       .then((res) => res.json())
       .then((result) => {
         setInstructors(result.slice(0, 6));

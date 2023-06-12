@@ -13,7 +13,7 @@ const ManageClasses = () => {
 
   const handleApproved = (item) => {
     console.log(item);
-    fetch(`http://localhost:5000/classes/admin/${item._id}`, {
+    fetch(`https://anu-design-server.vercel.app/classes/admin/${item._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -33,7 +33,7 @@ const ManageClasses = () => {
   };
   const handleDenied = (item) => {
     console.log(item);
-    fetch(`http://localhost:5000/classes/deny/${item._id}`, {
+    fetch(`https://anu-design-server.vercel.app/classes/deny/${item._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -57,7 +57,7 @@ const ManageClasses = () => {
     const feedback = form.feedback.value;
     console.log(feedback);
 
-    fetch(`http://localhost:5000/classes/update/${item._id}`, {
+    fetch(`https://anu-design-server.vercel.app/classes/update/${item._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

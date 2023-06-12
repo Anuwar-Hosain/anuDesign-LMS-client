@@ -4,7 +4,7 @@ import ClassCard from "../../components/ClassCard/ClassCard";
 const Classes = () => {
   const [classes, setClasses] = useState();
   useEffect(() => {
-    fetch("http://localhost:5000/class")
+    fetch("https://anu-design-server.vercel.app/class")
       .then((res) => res.json())
       .then((result) => {
         setClasses(result);
