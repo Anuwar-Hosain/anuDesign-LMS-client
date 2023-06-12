@@ -7,6 +7,7 @@ import SocialLogin from "../../shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const [error, setError] = useState("");
+  const [errorPass, setErrorPass] = useState("");
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
@@ -17,6 +18,10 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    if (data.password !== data.con_password) {
+      setErrorPass("password not same");
+      return;
+    }
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
@@ -139,6 +144,7 @@ const SignUp = () => {
             {errors.con_password && (
               <span className="text-red-500 my-2">This field is required</span>
             )}
+            <p className="text-red-600">{errorPass}</p>
           </div>
           <p className="text-red-600">{error}</p>
 
